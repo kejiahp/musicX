@@ -1,0 +1,17 @@
+name: musicx
+services:
+  db-postgres:
+    image: postgres:16
+    container_name: musicx_postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=musicx_db
+    volumes:
+      - postgresdbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgresdbdata:
