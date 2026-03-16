@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+	implementation("com.graphql-java:graphql-java-extended-scalars:24.0")
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
