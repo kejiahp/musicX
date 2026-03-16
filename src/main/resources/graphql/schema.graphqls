@@ -6,12 +6,34 @@ type QueryRootType {
   me: User
 }
 
+type MutationRootType {
+  """
+  Validates the credentials, creates a session and returns a valid authorization token.
+  """
+  login(email: String!, password: String!): LoginResponse
+
+  """
+  Creates a new user record in the system
+  """
+  signup(name: String!, email: String!, password: String!): SignUpResponse
+}
+
 type User {
   id: ID!
-  name: String!
-  email: String!
-  createdAt: Date!
-  updatedAt: Date!
+  name: String
+  email: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type SignUpResponse {
+  message: String
+  data: User
+}
+
+type LoginResponse {
+  message: String
+  token: String
 }
 
 scalar Date @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
