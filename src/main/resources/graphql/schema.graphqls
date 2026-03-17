@@ -1,8 +1,10 @@
 schema {
   query: QueryRootType
+  mutation: MutationRootType
 }
 
 type QueryRootType {
+  "Fetches the current authenticated user."
   me: User
 }
 
@@ -22,19 +24,27 @@ type User {
   id: ID!
   name: String
   email: String
-  createdAt: Date
-  updatedAt: Date
+  createdAt: Instant
+  updatedAt: Instant
 }
 
 type SignUpResponse {
+  success: Boolean
   message: String
   data: User
 }
 
 type LoginResponse {
+  success: Boolean
   message: String
+  data: AuthTokenResponse
+}
+
+type AuthTokenResponse {
   token: String
 }
+
+scalar Instant
 
 scalar Date @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
 

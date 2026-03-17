@@ -28,9 +28,9 @@ dependencies {
 	// Security
     implementation("org.springframework.boot:spring-boot-starter-security")
     // JWT
-    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-api:0.13.0")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.13.0")
 	// Custom GraphQL Scalar Types
 	implementation("com.graphql-java:graphql-java-extended-scalars:24.0")
 	implementation("org.flywaydb:flyway-core")
@@ -47,6 +47,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-graphql-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation("org.springframework.boot:spring-boot-starter-security-test")
 }
 
 tasks.withType<Test> {

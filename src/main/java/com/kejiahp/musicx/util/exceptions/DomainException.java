@@ -1,4 +1,4 @@
-package com.kejiahp.musicx.util;
+package com.kejiahp.musicx.util.exceptions;
 
 public abstract class DomainException extends RuntimeException {
     private final String code;

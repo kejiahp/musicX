@@ -22,5 +22,5 @@ public class SessionModel extends BaseEntity {
     private UserModel user;
 
     @Column(name = "is_valid")
-    private boolean isValid = true;
+    private Boolean isValid;
 }
