@@ -1,4 +1,7 @@
 Start server and run migrations: `./gradlew bootRun --args="migrate"`
+Start server and run seed command: `./gradlew bootRun --args="seed"`
+
+Start server, run migrations then attempt database seed`./gradlew bootRun --args="migrate seed"`
 
 Start server: `./gradlew bootRun`
 

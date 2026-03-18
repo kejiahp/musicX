@@ -1,14 +1,20 @@
 package com.kejiahp.musicx.cli;
 
 import org.flywaydb.core.Flyway;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.kejiahp.musicx.seed.SeedDBService;
+
 import java.util.Arrays;
 
 @Component
-public class MigrationCommand implements CommandLineRunner {
+public class MigrationAndSeedDBCommand implements CommandLineRunner {
+    @Autowired
+    private SeedDBService seedDBService;
+
     @Value("${spring.datasource.url}")
     private String dataSource;
 
@@ -30,6 +36,18 @@ public class MigrationCommand implements CommandLineRunner {
         if (Arrays.asList(args).contains("migrate")) {
             flyway.migrate();
             System.out.println("Database migrations executed. 🚀");
+        }
+
+        if (Arrays.asList(args).contains("seed")) {
+            try {
+                seedDBService.seedAll();
+                System.out.println("Database seed sucessful. 🚀");
+            } catch (Exception ex) {
+                System.out.print("[SeedDBCommand]");
+                System.out.println(ex.getMessage());
+                ex.printStackTrace();
+                System.out.println("Database seed failed 😞");
+            }
         }
     }
 }

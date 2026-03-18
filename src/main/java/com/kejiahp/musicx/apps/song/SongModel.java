@@ -1,5 +1,6 @@
 package com.kejiahp.musicx.apps.song;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.kejiahp.musicx.apps.album.AlbumModel;
@@ -30,8 +31,8 @@ public class SongModel extends BaseEntity {
     @JoinColumn(name = "artist_id")
     private ArtistModel artist;
 
-    @Column(nullable = true, name = "cover_image")
-    private String coverImage;
+    @Column(nullable = true, name = "url")
+    private String url;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
@@ -42,5 +43,5 @@ public class SongModel extends BaseEntity {
 
     @ManyToMany
     @JoinTable(name = "song_genres", joinColumns = @JoinColumn(name = "song_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private Set<GenreModel> genres;
+    private Set<GenreModel> genres = new HashSet<>();
 }

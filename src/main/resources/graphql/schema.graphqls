@@ -5,7 +5,7 @@ schema {
 
 type QueryRootType {
   "Fetches the current authenticated user."
-  me: User
+  me: MeResponseType
 }
 
 type MutationRootType {
@@ -28,13 +28,13 @@ type User {
   updatedAt: Instant
 }
 
-type SignUpResponse {
+type SignUpResponse implements ApiResponse {
   success: Boolean
   message: String
   data: User
 }
 
-type LoginResponse {
+type LoginResponse implements ApiResponse {
   success: Boolean
   message: String
   data: AuthTokenResponse
@@ -42,6 +42,17 @@ type LoginResponse {
 
 type AuthTokenResponse {
   token: String
+}
+
+type MeResponseType implements ApiResponse {
+  success: Boolean
+  message: String
+  data: User
+}
+
+interface ApiResponse {
+  success: Boolean
+  message: String
 }
 
 scalar Instant
