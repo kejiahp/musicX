@@ -16,11 +16,12 @@ import org.springframework.graphql.test.tester.GraphQlTester;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import com.kejiahp.musicx.apps.song.SongModel;
+import com.kejiahp.musicx.config.GlobalGraphQLExceptionHandler;
 import com.kejiahp.musicx.config.GraphQLConfiguration;
 import com.kejiahp.musicx.util.IsAuthUserService;
 
 @GraphQlTest(controllers = GenreController.class)
-@Import(GraphQLConfiguration.class)
+@Import({ GraphQLConfiguration.class, GlobalGraphQLExceptionHandler.class })
 public class GenreGraphQLTest {
     @Autowired
     private GraphQlTester graphQlTester;

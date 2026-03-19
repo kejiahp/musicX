@@ -18,11 +18,12 @@ import com.kejiahp.musicx.apps.artist.ArtistRepository;
 import com.kejiahp.musicx.apps.artist.ArtistController;
 import com.kejiahp.musicx.apps.song.SongModel;
 import com.kejiahp.musicx.apps.song.SongRepository;
+import com.kejiahp.musicx.config.GlobalGraphQLExceptionHandler;
 import com.kejiahp.musicx.config.GraphQLConfiguration;
 import com.kejiahp.musicx.util.IsAuthUserService;
 
 @GraphQlTest(controllers = ArtistController.class)
-@Import(GraphQLConfiguration.class)
+@Import({ GraphQLConfiguration.class, GlobalGraphQLExceptionHandler.class })
 public class ArtistGraphQLTest {
     @Autowired
     private GraphQlTester graphQlTester;
