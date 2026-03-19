@@ -3,6 +3,8 @@ Start server and run seed command: `./gradlew bootRun --args="seed"`
 
 Start server, run migrations then attempt database seed`./gradlew bootRun --args="migrate seed"`
 
+Execute Tests: `./gradlew test`
+
 Start server: `./gradlew bootRun`
 
 Refresh Dependencies: `./gradlew build --refresh-dependencies`
