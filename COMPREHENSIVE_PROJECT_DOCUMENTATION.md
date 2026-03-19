@@ -81,7 +81,13 @@ The application exposes a single GraphQL endpoint (`/graphql`) with the followin
 - `genres` — Returns all genres
 - `genre(id)` — Returns genre with all categorized songs
 
-All responses follow a consistent structure with `success`, `message`, and `data` fields. Protected queries throw `UnauthorizedException` if JWT is missing or invalid. The JWT token includes the user ID and session ID, verified on each request via the `JwtAuthFilter`.
+**Song Mutations (Protected, Require JWT):**
+
+- `createSong(title, artistId, albumId, url, durationSeconds)` — Creates a new song with required artist relationship and optional album reference
+- `updateSong(id, title, artistId, albumId, url, durationSeconds)` — Updates an existing song's metadata; all fields except ID are optional for partial updates
+- `deleteSong(id)` — Deletes an existing song by UUID
+
+All responses follow a consistent structure with `success`, `message`, and `data` fields. Protected queries throw `UnauthorizedException` if JWT is missing or invalid. The JWT token includes the user ID and session ID, verified on each request via the `JwtAuthFilter`. Song mutations validate that referenced artists and albums exist before performing operations.
 
 ---
 
@@ -100,6 +106,12 @@ I implemented six focused test suites using GraphQlTester to validate core funct
 - Tests song query endpoint with authentication checks
 - Verifies nested field resolution (artist and album within song)
 - Mocks repository layer to avoid database dependencies
+- Tests song creation with required artist and optional album references
+- Validates `createSong` throws `RecordNotFound` for invalid artist/album IDs
+- Tests song updates with partial field modifications (all fields optional)
+- Validates `updateSong` properly handles artist and album relationship changes
+- Tests song deletion with soft error handling for non-existent records
+- Mocks `songRepository.save()` and `songRepository.delete()` to verify CRUD operations
 
 **UserGraphQLTest**
 
