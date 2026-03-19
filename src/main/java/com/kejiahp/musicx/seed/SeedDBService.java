@@ -38,7 +38,7 @@ public class SeedDBService {
 
     String[] genres = { "Pop", "Hip-Hop", "Rock", "EDM (Electronic Dance Music)", "Country", "R&B (Rhythm & Blues)",
             "Indie Rock", "Alternative Rock", "Jazz", "Metal", "Reggaeton", "Latin Pop", "K-Pop (Korean Pop)",
-            "Folk", "Classical", "Blues", "Dancehall", "Funk", "Soul", "Punk Rock"
+            "J-Pop (Japanese Pop)", "Folk", "Classical", "Blues", "Dancehall", "Funk", "Soul", "Punk Rock"
     };
 
     @Transactional
