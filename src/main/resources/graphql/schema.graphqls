@@ -58,6 +58,34 @@ type MutationRootType {
   Creates a new user account and returns the newly created user record.
   """
   signup(name: String!, email: String!, password: String!): SignUpResponse
+
+  """
+  Creates a new song with the specified details.
+  """
+  createSong(
+    title: String!
+    artistId: UUID!
+    albumId: UUID
+    url: String
+    durationSeconds: Int
+  ): SongResponse
+
+  """
+  Updates an existing song by ID.
+  """
+  updateSong(
+    id: UUID!
+    title: String
+    artistId: UUID
+    albumId: UUID
+    url: String
+    durationSeconds: Int
+  ): SongResponse
+
+  """
+  Deletes a song by ID.
+  """
+  deleteSong(id: UUID!): SongResponse
 }
 
 type Song {
@@ -148,6 +176,12 @@ type MeResponseType implements ApiResponse {
   success: Boolean
   message: String
   data: User
+}
+
+type SongResponse implements ApiResponse {
+  success: Boolean
+  message: String
+  data: Song
 }
 
 interface ApiResponse {
