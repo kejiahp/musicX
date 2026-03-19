@@ -6,26 +6,126 @@ schema {
 type QueryRootType {
   "Fetches the current authenticated user."
   me: MeResponseType
+
+  """
+  Get all Album
+  """
+  albums: [Album]
+
+  """
+  Gets a single album by ID, including all songs associated with it
+  """
+  album(id: UUID!): AlbumSongList
+
+  """
+  Get all Artist
+  """
+  artists: [Artist]
+
+  """
+  Gets a single artist by ID, including all songs associated with them.
+  """
+  artist(id: UUID!): ArtistSongList
+
+  """
+  Get all genres
+  """
+  genres: [Genre]
+
+  """
+  Gets a single genre by ID, including all songs categorized under it.
+  """
+  genre(id: UUID!): GenreSongList
+
+  """
+  Get all songs
+  """
+  songs: [Song]
+
+  """
+  Gets a single song by ID.
+  """
+  song(id: UUID!): Song
 }
 
 type MutationRootType {
   """
-  Validates the credentials, creates a session and returns a valid authorization token.
+  Validates the credentials, creates a session and returns an authorization token.
   """
   login(email: String!, password: String!): LoginResponse
 
   """
-  Creates a new user record in the system
+  Creates a new user account and returns the newly created user record.
   """
   signup(name: String!, email: String!, password: String!): SignUpResponse
 }
 
+type Song {
+  id: UUID!
+  title: String!
+  artist: Artist
+  url: Url
+  album: Album
+  durationSeconds: Int
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
+type Artist {
+  id: UUID!
+  name: String!
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
+type Album {
+  id: UUID!
+  title: String!
+  coverImage: Url
+  artist: Artist
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
+type Genre {
+  id: UUID!
+  name: String!
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
+type AlbumSongList {
+  id: UUID!
+  title: String!
+  songs: [Song!]
+  coverImage: Url
+  artist: Artist
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
+type GenreSongList {
+  id: UUID!
+  name: String!
+  songs: [Song!]
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
+type ArtistSongList {
+  id: UUID!
+  name: String!
+  songs: [Song!]
+  createdAt: Instant!
+  updatedAt: Instant!
+}
+
 type User {
-  id: ID!
-  name: String
-  email: String
-  createdAt: Instant
-  updatedAt: Instant
+  id: UUID!
+  name: String!
+  email: String!
+  createdAt: Instant!
+  updatedAt: Instant!
 }
 
 type SignUpResponse implements ApiResponse {
@@ -54,6 +154,8 @@ interface ApiResponse {
   success: Boolean
   message: String
 }
+
+scalar UUID
 
 scalar Instant
 

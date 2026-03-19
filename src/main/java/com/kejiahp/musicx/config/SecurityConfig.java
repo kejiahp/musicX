@@ -23,16 +23,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        // http.csrf(csrf -> csrf.disable()) // Disable CSRF if you're using stateless
-        // APIs or GraphQL
-        // .authorizeHttpRequests(auth -> auth
-        // .requestMatchers("/", "/graphql", "/graphiql", "/health").permitAll()
-        // .anyRequest().authenticated());
-
-        // return http.build();
-
         return http
-                .anonymous(anonymous -> anonymous.disable())
+                .anonymous(anonymous -> anonymous.disable()) // Disable Spring from creating the AnonymousUser when a
+                                                             // request without JWT is made
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/graphiql", "/graphql", "/health").permitAll()

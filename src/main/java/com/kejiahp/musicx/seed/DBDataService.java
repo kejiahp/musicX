@@ -65,7 +65,9 @@ public class DBDataService {
                                                 new SongData("君に夢中 - Kimini Muchuu", 4 * 60 + 18,
                                                                 "https://music.youtube.com/watch?v=yUrMVw7osA4&si=HhkSRm7BAB-0y2fl"),
                                                 new SongData("PINK BLOOD", 3 * 60 + 18,
-                                                                "https://music.youtube.com/watch?v=y9h6S5v4kQw&si=HtnV07lwXHeCrV5n"))));
+                                                                "https://music.youtube.com/watch?v=y9h6S5v4kQw&si=HtnV07lwXHeCrV5n"),
+                                                new SongData("Merry Christmas Mr. Lawrence - FYI", 3 * 60 + 50,
+                                                                "https://music.youtube.com/watch?v=sMf4FZtylgw&si=gGjCV9qo_RuzsHly"))));
         }
 
 }
